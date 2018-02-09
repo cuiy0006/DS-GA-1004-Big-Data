@@ -36,15 +36,15 @@ for line in sys.stdin:
 		
 		#Generate the necessary key-value pairs
  		#(your code goes here)
-
-
-	
+		for k in range(p):
+			print('{0:d},{1:d}\t{2:s},{3:d},{4:f}'.format(row, k, 'A', col, value))
 	#Otherwise, if this is an entry in matrix B...
 	else:
 		
 		#Generate the necessary key-value pairs
  		#(your code goes here)
-		
+		for i in range(m):
+			print('{0:d},{1:d}\t{2:s},{3:d},{4:f}'.format(i, col, 'B', row, value))
 
 	
         
