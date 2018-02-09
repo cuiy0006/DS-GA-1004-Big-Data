@@ -28,7 +28,7 @@ for line in sys.stdin:
 
 	#Parse key/value input (your code goes here)
 
-	entry = value.split(',')
+	entry = value.split(' ')
 	MatrixName = entry[0]
 	j = entry[1]
 	subKey = (MatrixName, j)
