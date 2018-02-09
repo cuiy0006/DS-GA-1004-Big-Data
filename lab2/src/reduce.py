@@ -32,7 +32,10 @@ for line in sys.stdin:
 	MatrixName = entry[0]
 	j = entry[1]
 	subKey = (MatrixName, j)
-	subValue = float(entry[2])
+	try:
+		subValue = float(entry[2])
+	except ValueError:
+		continue
 
 	#If we are still on the same key...
 	if key==currentkey:
