@@ -60,7 +60,6 @@ for line in sys.stdin:
 			#compute/output result to STDOUT (your code goes here)
 			print('{0:s}\t{1:f}'.format(currentkey, total))
 
-	
 		currentkey = key
 
 		#Process input for new key (your code goes here)
