@@ -1,8 +1,8 @@
 import sys
-import os
+#import os
 
 for line in sys.stdin:
-    print('0\t1 2 3 4 5')
+    #print('0\t1 2 3 4 5')
     continue
     # currfile = os.environ.get('mapreduce_map_input_file')
     # currfile = '1'
