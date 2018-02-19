@@ -6,7 +6,7 @@
 
 import sys
 import string
-import numpy
+#import numpy
 
 # #number of columns of A/rows of B
 # n = int(sys.argv[1]) 
