@@ -19,58 +19,58 @@ currentkey = None
 
 # input comes from STDIN (stream data that goes to the program)
 for line in sys.stdin:
+	continue
+# 	#Remove leading and trailing whitespace
+# 	line = line.strip()
 
-	#Remove leading and trailing whitespace
-	line = line.strip()
+# 	#Get key/value 
+# 	key, value = line.split('\t',1)
 
-	#Get key/value 
-	key, value = line.split('\t',1)
+# 	#Parse key/value input (your code goes here)
 
-	#Parse key/value input (your code goes here)
+# 	entry = value.split(' ')
+# 	MatrixName = entry[0]
+# 	j = entry[1]
+# 	subKey = (MatrixName, j)
+# 	try:
+# 		subValue = float(entry[2])
+# 	except ValueError:
+# 		continue
 
-	entry = value.split(' ')
-	MatrixName = entry[0]
-	j = entry[1]
-	subKey = (MatrixName, j)
-	try:
-		subValue = float(entry[2])
-	except ValueError:
-		continue
+# 	#If we are still on the same key...
+# 	if key==currentkey:
 
-	#If we are still on the same key...
-	if key==currentkey:
+# 		#Process key/value pair (your code goes here)
+# 		searchMatrix = 'A'
+# 		if MatrixName == 'A':
+# 			searchMatrix = 'B'
 
-		#Process key/value pair (your code goes here)
-		searchMatrix = 'A'
-		if MatrixName == 'A':
-			searchMatrix = 'B'
-
-		searchKey = (searchMatrix, j)
-		if searchKey in dic:
-			total += subValue * dic[searchKey]
-		else:
-		#Otherwise, if this is a new key...
-			dic[subKey] = subValue
-
-
-	else:
-		#If this is a new key and not the first key we've seen
-		if currentkey:
-
-			#compute/output result to STDOUT (your code goes here)
-			print('{0:s}\t{1:f}'.format(currentkey, total))
-
-		currentkey = key
-
-		#Process input for new key (your code goes here)
-		total = 0
-		dic = {subKey: subValue}
+# 		searchKey = (searchMatrix, j)
+# 		if searchKey in dic:
+# 			total += subValue * dic[searchKey]
+# 		else:
+# 		#Otherwise, if this is a new key...
+# 			dic[subKey] = subValue
 
 
+# 	else:
+# 		#If this is a new key and not the first key we've seen
+# 		if currentkey:
 
-#Compute/output result for the last key (your code goes here)
-if currentkey == key:
-	print('{0:s}\t{1:f}'.format(currentkey, total))
+# 			#compute/output result to STDOUT (your code goes here)
+# 			print('{0:s}\t{1:f}'.format(currentkey, total))
+
+# 		currentkey = key
+
+# 		#Process input for new key (your code goes here)
+# 		total = 0
+# 		dic = {subKey: subValue}
+
+
+
+# #Compute/output result for the last key (your code goes here)
+# if currentkey == key:
+# 	print('{0:s}\t{1:f}'.format(currentkey, total))
 
 
 
