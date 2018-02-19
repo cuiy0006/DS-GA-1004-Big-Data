@@ -27,7 +27,6 @@ for line in sys.stdin:
         else: #from parking
             parkingdic[key] = entry
 
-if key == currentkey:
-    for k, v in parkingdic.items():
-        if k != openkey:
-            print('{0:s}\t{1:s}, {2:s}, {3:s}, {4:s}'.format(k, v[1], v[2], v[3], v[4]))
+for k, v in parkingdic.items():
+    if k != openkey:
+        print('{0:s}\t{1:s}, {2:s}, {3:s}, {4:s}'.format(k, v[1], v[2], v[3], v[4]))
