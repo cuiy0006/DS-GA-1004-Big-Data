@@ -4,6 +4,7 @@ import os
 
 for line in sys.stdin:
     currfile = os.environ.get('mapreduce_map_input_file')
+    currfile = '1'
     line = line.strip()
     entry = line.split(",")
 
