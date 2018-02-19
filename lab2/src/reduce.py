@@ -8,14 +8,14 @@ import sys
 import string
 import numpy
 
-#number of columns of A/rows of B
-n = int(sys.argv[1]) 
+# #number of columns of A/rows of B
+# n = int(sys.argv[1]) 
 
-#Create data structures to hold the current row/column values (if needed; your code goes here)
+# #Create data structures to hold the current row/column values (if needed; your code goes here)
 
-dic = {}
-total = 0
-currentkey = None
+# dic = {}
+# total = 0
+# currentkey = None
 
 # input comes from STDIN (stream data that goes to the program)
 for line in sys.stdin:
@@ -71,6 +71,3 @@ for line in sys.stdin:
 # #Compute/output result for the last key (your code goes here)
 # if currentkey == key:
 # 	print('{0:s}\t{1:f}'.format(currentkey, total))
-
-
-

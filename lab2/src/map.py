@@ -10,11 +10,11 @@ import sys
 import string
 import numpy
 
-#number of rows in A
-m = int(sys.argv[1]) 
+# #number of rows in A
+# m = int(sys.argv[1]) 
 
-#number of columns in B
-p = int(sys.argv[2])
+# #number of columns in B
+# p = int(sys.argv[2])
 
 
 # input comes from STDIN (stream data that goes to the program)
