@@ -3,31 +3,32 @@
 import sys
 
 openkey = None
-parkingdic = {}
+parkingkey = None
+parkingvalue = []
 currentkey = None
 
 for line in sys.stdin:
-    line = line.strip()
-    key, value = line.split('\t', 1)
-    entry = value.split(' ')
+	line = line.strip()
+	key, value = line.split('\t', 1)
+	entry = value.split(' ')
+	if key == currentkey:
+		if entry[0] == '0':  # from open
+			openkey = key
+		else:
+			parkingkey = key
+			parkingvalue = entry
+	else:
+		if parkingkey != None and parkingkey != openkey:
+			print('{0:s}\t{1:s}, {2:s}, {3:s}, {4:s}'.format(parkingkey, parkingvalue[1], parkingvalue[2], parkingvalue[3], parkingvalue[4]))
+		currentkey = key
+		openkey = None
+		parkingkey = None
+		parkingvalue = []
+		if entry[0] == '0': #from open
+			openkey = key
+		else: #from parking
+			parkingkey = key
+			parkingvalue = entry
 
-    if key == currentkey:
-        if entry[0] == '0': #from open
-            openkey = key
-        else: #from parking
-            parkingdic[key] = entry
-    else:
-        for k, v in parkingdic.items():
-            if k != openkey:
-                print('{0:s}\t{1:s}, {2:s}, {3:s}, {4:s}'.format(k, v[1], v[2], v[3], v[4]))
-        currentkey = key
-        openkey = None
-        parkingdic = {}
-        if entry[0] == '0': #from open
-            openkey = key
-        else: #from parking
-            parkingdic[key] = entry
-
-for k, v in parkingdic.items():
-    if k != openkey:
-        print('{0:s}\t{1:s}, {2:s}, {3:s}, {4:s}'.format(k, v[1], v[2], v[3], v[4]))
+if parkingkey != None and parkingkey != openkey:
+	print('{0:s}\t{1:s}, {2:s}, {3:s}, {4:s}'.format(parkingkey, parkingvalue[1], parkingvalue[2], parkingvalue[3], parkingvalue[4]))
