@@ -19,32 +19,32 @@ p = int(sys.argv[2])
 
 # input comes from STDIN (stream data that goes to the program)
 for line in sys.stdin:
-    
-	#Remove leading and trailing whitespace
-	line = line.strip()
+    continue
+	# #Remove leading and trailing whitespace
+	# line = line.strip()
 
-	#Split line into array of entry data
-	entry = line.split(",")
+	# #Split line into array of entry data
+	# entry = line.split(",")
     
-	# Set row, column, and value for this entry
-	row = int(entry[1])
-	col = int(entry[2])
-	value = float(entry[3])
+	# # Set row, column, and value for this entry
+	# row = int(entry[1])
+	# col = int(entry[2])
+	# value = float(entry[3])
 
-	#If this is an entry in matrix A...
-	if (entry[0] == "A"):
+	# #If this is an entry in matrix A...
+	# if (entry[0] == "A"):
 		
-		#Generate the necessary key-value pairs
- 		#(your code goes here)
-		for k in range(p):
-			print('{0:d} {1:d}\t{2:s} {3:d} {4:f}'.format(row, k, 'A', col, value))
-	#Otherwise, if this is an entry in matrix B...
-	else:
+	# 	#Generate the necessary key-value pairs
+ 	# 	#(your code goes here)
+	# 	for k in range(p):
+	# 		print('{0:d} {1:d}\t{2:s} {3:d} {4:f}'.format(row, k, 'A', col, value))
+	# #Otherwise, if this is an entry in matrix B...
+	# else:
 		
-		#Generate the necessary key-value pairs
- 		#(your code goes here)
-		for i in range(m):
-			print('{0:d} {1:d}\t{2:s} {3:d} {4:f}'.format(i, col, 'B', row, value))
+	# 	#Generate the necessary key-value pairs
+ 	# 	#(your code goes here)
+	# 	for i in range(m):
+	# 		print('{0:d} {1:d}\t{2:s} {3:d} {4:f}'.format(i, col, 'B', row, value))
 
 	
         
