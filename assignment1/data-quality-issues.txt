@@ -1,0 +1,6 @@
+task1:
+684436 task1.out
+329630 open-violations.csv
+1014017 parking-violations.csv
+1014017 - 329630 = 684387
+684436 - 684387 = 49 there 49 records are open but not in parking-violations
