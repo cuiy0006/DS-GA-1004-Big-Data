@@ -20,10 +20,10 @@ for line in sys.stdin:
 		cnt += 1
 	else:
 		if currentkey:
-			print('{0:s}\t{1:f} {2:f}'.format(currentkey, round(currenttotal, 2), round(currenttotal/cnt, 2)))
+			print('{0:s}\t{1:.2f} {2:.2f}'.format(currentkey, currenttotal, currenttotal/cnt))
 		currentkey = key
 		cnt = 1
 		currenttotal = amount_due
 
 if currentkey != None:
-	print('{0:s}\t{1:f} {2:f}'.format(currentkey, round(currenttotal, 2), round(currenttotal/cnt, 2)))
+	print('{0:s}\t{1:.2f} {2:.2f}'.format(currentkey, currenttotal, currenttotal/cnt))
