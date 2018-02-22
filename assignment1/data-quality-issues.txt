@@ -4,3 +4,6 @@ task1:
 1014017 parking-violations.csv
 1014017 - 329630 = 684387
 684436 - 684387 = 49 there 49 records are open but not in parking-violations
+
+task3:
+there are some records with license_type or Amount_due as empty
