@@ -11,7 +11,7 @@ for line in sys.stdin:
 	plate_id = entry[14]
 	registration_state = entry[16]
 
-	print('{0:s} {1:s}\t{2:s}'.format(plate_id, registration_state, '1')) 
+	print('{0:s}, {1:s}\t{2:s}'.format(plate_id, registration_state, '1')) 
 
 	
         
