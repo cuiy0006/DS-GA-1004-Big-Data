@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
 import sys
+from heapq import heappush, heappop
 
 cnt = 0
 currentkey = None
-max_cnt = 0
-max_key = None
+minheap = []
+maxheap = []
 
 for line in sys.stdin:
 	line = line.strip()
@@ -19,10 +20,6 @@ for line in sys.stdin:
 			max_cnt = cnt
 		currentkey = key
 		cnt = 1
-
-if currentkey != None and max_cnt < cnt:
-	max_key = currentkey
-	max_cnt = cnt
 
 if max_key != None:
 	print('{0:s}\t{1:d}'.format(max_key, max_cnt))
