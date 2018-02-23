@@ -7,3 +7,10 @@ task1:
 
 task3:
 there are some records with license_type or Amount_due as empty
+
+task5:
+there are some records with plate_id as 'BLANKPLATE'
+
+task6:
+there are some records with plate_id as 'BLANKPLATE'
+there there are some records with plate_id as 'N/A'

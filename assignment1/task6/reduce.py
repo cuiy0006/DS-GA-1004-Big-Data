@@ -58,4 +58,3 @@ while len(minheap) != 0:
 	res.append((key, -cnt))
 for key, cnt in res:
 	print('{0:s}\t{1:d}'.format(key, cnt)) 
-
