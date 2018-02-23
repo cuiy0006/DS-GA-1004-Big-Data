@@ -14,3 +14,6 @@ there are some records with plate_id as 'BLANKPLATE'
 task6:
 there are some records with plate_id as 'BLANKPLATE'
 there there are some records with plate_id as 'N/A'
+
+task8:
+there are 
