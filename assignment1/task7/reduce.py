@@ -21,7 +21,7 @@ for line in sys.stdin:
 			weekdaycnt += 1
 	else:
 		if currentkey != None:
-			print('{0:s}\t{1:.2f}, {2:.2f}'.format(currentkey, weekendcnt/NOofWeekend, weekdaycnt/NOofWeekday))
+			print('{0:s}\t{1:.2f}, {2:.2f}'.format(currentkey, float(weekendcnt)/NOofWeekend, float(weekdaycnt)/NOofWeekday))
 		currentkey = violation_code
 		weekdaycnt = 0
 		weekendcnt = 0
@@ -31,4 +31,4 @@ for line in sys.stdin:
 			weekdaycnt += 1
 
 if currentkey != None:
-	print('{0:s}\t{1:.2f}, {2:.2f}'.format(currentkey, weekendcnt/NOofWeekend, weekdaycnt/NOofWeekday))
+	print('{0:s}\t{1:.2f}, {2:.2f}'.format(currentkey, float(weekendcnt)/NOofWeekend, float(weekdaycnt)/NOofWeekday))
