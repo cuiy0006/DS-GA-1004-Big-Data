@@ -11,7 +11,7 @@ for line in sys.stdin:
 	entry = line.split(",")
 
 	if 'open' in currfile:
-		summon_number = entry[0]
+		summon_number = entry[0].strip(string.punctuation).strip()
 		print('{0:s}\t{1:s}'.format(summon_number, '0'))
 	else:
 		summon_number = entry[0].strip(string.punctuation).strip()
