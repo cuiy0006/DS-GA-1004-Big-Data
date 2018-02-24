@@ -10,7 +10,7 @@ currentkey = None
 for line in sys.stdin:
 	line = line.strip()
 	key, value = line.split('\t', 1)
-	entry = value.split(' ')
+	entry = value.split(',')
 	if key == currentkey:
 		if entry[0] == '0':  # from open
 			openkey = key
