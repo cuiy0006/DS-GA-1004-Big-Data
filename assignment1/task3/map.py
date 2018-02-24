@@ -11,7 +11,7 @@ for line in sys.stdin:
 
 	license_type = entry[2].strip(string.punctuation).strip()
 	if license_type == '':
-		continue
+		license_type = 'NULL'
 	amount_due = entry[12].strip(string.punctuation).strip()
 	if amount_due == '':
 		amount_due = '0'

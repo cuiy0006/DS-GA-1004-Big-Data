@@ -6,14 +6,16 @@ task1:
 684436 - 684387 = 49 there 49 records are open but not in parking-violations or 49 records are duplicates
 
 task3:
-there are some records with license_type or Amount_due as empty string
+there are some records with license_type or Amount_due as empty string.
+I choose to skip the empty license_type and set empty Amount_due as '0'.
 
 task5:
 there are some records with plate_id as 'BLANKPLATE'
 
 task6:
 there are some records with plate_id as 'BLANKPLATE'
-there there are some records with plate_id as 'N/A'
+there are some records with plate_id as 'N/A'
 
 task8:
-there are lots of color and make as empty or with special characters like '.', '\', ';', '"'. Some of them even named 'TAXI'
+there are lots of color and make as empty or with special characters like '.', '\', ';', '"'.
+I choose to remove the punctuations by default. It means '.WHITE\' is equivalent to 'WHITE' in my code.
