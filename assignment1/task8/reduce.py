@@ -10,7 +10,6 @@ make_dic = {}
 for line in sys.stdin:
 	line = line.strip()
 	key, _ = line.split('\t', 1)
-	column_name, term = key.split(',')
 
 	if key == currentkey:
 		cnt += 1
