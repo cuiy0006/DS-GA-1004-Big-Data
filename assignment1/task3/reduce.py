@@ -10,7 +10,10 @@ currentkey = None
 for line in sys.stdin:
 	line = line.strip()
 	key, value = line.split('\t', 1)
-	amount_due = Decimal(value)
+	try:
+		amount_due = Decimal(value)
+	except ValueError:
+		continue
 
 	if key == currentkey:
 		currenttotal += amount_due
