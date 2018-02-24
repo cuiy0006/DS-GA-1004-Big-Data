@@ -6,7 +6,7 @@ task1:
 684436 - 684387 = 49 there 49 records are open but not in parking-violations or 49 records are duplicates
 
 task3:
-there are some records with license_type or Amount_due as empty
+there are some records with license_type or Amount_due as empty string
 
 task5:
 there are some records with plate_id as 'BLANKPLATE'
