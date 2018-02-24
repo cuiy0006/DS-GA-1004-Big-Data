@@ -9,10 +9,7 @@ currentkey = None
 
 for line in sys.stdin:
 	line = line.strip()
-	try:
-		key, value = line.split('\t', 1)
-	except ValueError:
-		continue
+	key, value = line.split('\t', 1)
 	amount_due = Decimal(value)
 
 	if key == currentkey:
