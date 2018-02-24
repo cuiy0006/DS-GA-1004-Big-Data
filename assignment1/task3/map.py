@@ -10,6 +10,8 @@ for line in sys.stdin:
 	entry = line.split(",")
 
 	license_type = entry[2].strip(string.punctuation).strip()
+	if license_type == '':
+		license_type = 'NULL'
 	amount_due = entry[12].strip(string.punctuation).strip()
 
 	print('{0:s}\t{1:s}'.format(license_type, amount_due))
