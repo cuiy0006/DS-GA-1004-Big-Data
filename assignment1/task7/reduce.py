@@ -21,7 +21,8 @@ for line in sys.stdin:
 			weekdaycnt += 1
 	else:
 		if currentkey != None:
-			print('{0:s}\t{1:.2f}, {2:.2f}'.format(currentkey, float(weekendcnt)/NOofWeekend, float(weekdaycnt)/NOofWeekday))
+			#this will be compatible with both py2 and py3
+			print('{0:s}\t{1:.2f}, {2:.2f}'.format(currentkey, float(weekendcnt)/NOofWeekend, float(weekdaycnt)/NOofWeekday)) 
 		currentkey = violation_code
 		weekdaycnt = 0
 		weekendcnt = 0
