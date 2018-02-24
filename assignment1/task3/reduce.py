@@ -20,8 +20,6 @@ for line in sys.stdin:
 		cnt += 1
 	else:
 		if currentkey:
-			if currentkey == 'NULL':
-				currentkey = ''
 			print('{0:s}\t{1:.2f}, {2:.2f}'.format(currentkey, currenttotal, currenttotal/cnt))
 		currentkey = key
 		cnt = 1
