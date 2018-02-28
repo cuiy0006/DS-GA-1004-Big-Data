@@ -9,8 +9,10 @@ for line in sys.stdin:
 	line = line.strip()
 	entry = line.split(",")
 
-	plate_id = entry[14].strip(string.punctuation).strip()
-	registration_state = entry[16].strip(string.punctuation).strip()
+	plate_id = entry[14]
+	registration_state = entry[16]
+	if plate_id == 'T':
+		continue
 
 	print('{0:s}, {1:s}\t{2:s}'.format(plate_id, registration_state, '1')) 
 

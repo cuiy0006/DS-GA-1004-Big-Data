@@ -9,12 +9,10 @@ for line in sys.stdin:
 	line = line.strip()
 	entry = line.split(",")
 
-	license_type = entry[2].strip(string.punctuation).strip()
-	if license_type == '':
-		license_type = 'NULL'
-	amount_due = entry[12].strip(string.punctuation).strip()
-	if amount_due == '':
-		amount_due = '0'
+	license_type = entry[2]
+	amount_due = entry[12]
+	if license_type == 'NULL' or license_type == 'JZ' or license_type =='L744':
+		continue
 
 	print('{0:s}\t{1:s}'.format(license_type, amount_due))
 

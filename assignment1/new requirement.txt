@@ -1,0 +1,13 @@
+See updated attachment -- changes are highlighted
+
+A few clarifications:
+
+*** You should use Python 3.4.4. This means you need to use the Bash wrappers provided in Lab 1, otherwise Hadoop will execute your (Python) mapper and reducer using the default version of Python.
+
+- Task 8: use a single reducer, and the output should be formatted as follows
+
+column_name    term, term_frequency
+
+- Task 6: the question has been updated -- it now asks for the top-20 vehicles
+
+- The autograder will be released on Monday, Feb 26
