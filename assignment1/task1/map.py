@@ -9,7 +9,8 @@ import re
 for line in sys.stdin:
 	currfile = os.environ.get('mapreduce_map_input_file')
 	line = line.strip()
-	entry = re.split(''',(?=(?:[^'"]|'[^']*'|"[^"]*")*$)''', line)
+	line = re.sub(r'\".*?\"','1',line)
+	entry = line.split()
 
 	if 'open' in currfile:
 		summon_number = entry[0]
