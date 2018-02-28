@@ -1,9 +1,5 @@
 task1:
-684436 task1.out
-329630 open-violations.csv
-1014017 parking-violations.csv
-1014017 - 329630 = 684387
-684436 - 684387 = 49 there 49 records are open but not in parking-violations or 49 records are duplicates
+violation_description, street_name, plate_id may contain "" and comma, this will let the split operation wrong
 
 task3:
 there are some records with license_type or Amount_due as empty string.
