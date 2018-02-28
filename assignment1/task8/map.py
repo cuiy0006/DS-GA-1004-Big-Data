@@ -9,8 +9,10 @@ for line in sys.stdin:
 	line = line.strip()
 	entry = line.split(",")
 
-	vehicle_make = entry[-2]
-	vehicle_color = entry[-3]
+	vehicle_make = entry[-2].strip(string.punctuation)
+	vehicle_color = entry[-3].strip(string.punctuation)
+	if vehicle_make == '' or vehicle_color == '':
+		continue
 
 	print('{0:s},{1:s}\t{2:s}'.format('vehicle_make', vehicle_make, '1'))
 	print('{0:s},{1:s}\t{2:s}'.format('vehicle_color', vehicle_color, '1'))

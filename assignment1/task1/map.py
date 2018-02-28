@@ -16,6 +16,8 @@ for line in sys.stdin:
 	else:
 		summon_number = entry[0]
 		plate_id = entry[14]
+		if plate_id == 'T':
+			continue
 		violation_precinct = entry[6]
 		violation_code = entry[2]
 		issue_date = entry[1]

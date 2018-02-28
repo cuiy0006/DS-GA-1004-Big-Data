@@ -33,10 +33,6 @@ if currentkey != None:
 			heappop(maxheap)
 			heappush(maxheap, (cnt, currentkey))
 
-res = []
-while len(maxheap) != 0:
-	cnt, key = heappop(maxheap)
-	res.append((key, cnt))
-res.reverse()
-for key, cnt in res:
+maxheap.sort()
+for key, cnt in maxheap:
 	print('{0:s}\t{1:d}'.format(key, cnt)) 
