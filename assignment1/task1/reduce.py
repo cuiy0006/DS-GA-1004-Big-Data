@@ -11,12 +11,12 @@ for line in sys.stdin:
 	line = line.strip()
 	key, value = line.split('\t', 1)
 	entry = value.split(',')
-	if '"' in entry[1]:
-		entry[1] = entry[1][1:-1].replace('*', ',')
 	if key == currentkey:
 		if entry[0] == '0':  # from open
 			openkey = key
 		else:
+			if '"' in entry[1]:
+				entry[1] = entry[1][1:-1].replace('*', ',')
 			parkingkey = key
 			parkingvalue = entry
 	else:
