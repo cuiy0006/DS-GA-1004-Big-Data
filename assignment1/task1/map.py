@@ -9,7 +9,11 @@ import re
 for line in sys.stdin:
 	currfile = os.environ.get('mapreduce_map_input_file')
 	line = line.strip()
-	line = re.sub(r'\".*?\"','1',line)
+	#line = re.sub(r'\".*?\"','1',line)
+	matches = re.findall(r'\".*?\"', line)
+	lst = list(map(lambda s:s.replace(',','*'), matches))
+	for i, match in enumerate(matches):
+		line.replace(match, lst[i])
 	entry = line.split(',')
 
 	if 'open' in currfile:
@@ -18,6 +22,8 @@ for line in sys.stdin:
 	else:
 		summon_number = entry[0]
 		plate_id = entry[-8]
+		if '"' in plate_id:
+			plate_id = plate_id[1:-1].replace('*', ',')
 		if plate_id == 'T':
 			continue
 		violation_precinct = entry[-16]
