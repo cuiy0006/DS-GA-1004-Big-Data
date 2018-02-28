@@ -29,6 +29,8 @@ for line in sys.stdin:
 		if entry[0] == '0': #from open
 			openkey = key
 		else: #from parking
+			if '"' in entry[1]:
+				entry[1] = entry[1][1:-1].replace('*', ',')
 			parkingkey = key
 			parkingvalue = entry
 
