@@ -11,7 +11,7 @@ for line in sys.stdin:
 	line = re.sub(r'\".*?\"','1',line)
 	entry = line.split(",")
 
-	registration_state = entry[-6].strip().strip(string.punctuation).strip()
+	registration_state = entry[16]
 	if registration_state != 'NY':
 		registration_state = 'Other'
 		
