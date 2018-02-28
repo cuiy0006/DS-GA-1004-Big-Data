@@ -22,8 +22,6 @@ for line in sys.stdin:
 	else:
 		summon_number = entry[0]
 		plate_id = entry[-8]
-		if '"' in plate_id:
-			plate_id = plate_id[1:-1].replace('*', ',')
 		if plate_id == 'T':
 			continue
 		violation_precinct = entry[-16]
