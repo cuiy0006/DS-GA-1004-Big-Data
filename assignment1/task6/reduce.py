@@ -33,6 +33,6 @@ if currentkey != None:
 			heappop(maxheap)
 			heappush(maxheap, (cnt, currentkey))
 
-maxheap.sort()
+maxheap.sort(key=lambda x:(-x[0], x[1]))
 for cnt, key in maxheap:
 	print('{0:s}\t{1:d}'.format(key, cnt)) 

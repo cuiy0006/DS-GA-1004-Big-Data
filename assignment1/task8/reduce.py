@@ -33,6 +33,6 @@ if currentkey != None:
 makes = sorted(list(make_dic.keys()))
 colors = sorted(list(color_dic.keys()))
 for make in makes:
-	print('{0:s}\t{1:s}, {2:d}'.format('vehicle_make', make, make_dic[make]))
+	print('{0:s}\t{1:s} {2:d}'.format('vehicle_make', make, make_dic[make]))
 for color in colors:
-	print('{0:s}\t{1:s}, {2:d}'.format('vehicle_color', color, color_dic[color]))
+	print('{0:s}\t{1:s} {2:d}'.format('vehicle_color', color, color_dic[color]))

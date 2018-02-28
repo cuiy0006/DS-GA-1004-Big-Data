@@ -10,7 +10,7 @@ for line in sys.stdin:
 	entry = line.split(",")
 
 	license_type = entry[2]
-	amount_due = entry[12]
+	amount_due = entry[-6]
 	if license_type == 'NULL' or license_type == 'JZ' or license_type =='L744':
 		continue
 
