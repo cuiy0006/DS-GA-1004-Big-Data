@@ -8,9 +8,8 @@ import re
 # input comes from STDIN (stream data that goes to the program)
 for line in sys.stdin:
 	line = line.strip()
-	entry = line.split(",")
-
 	line = re.sub(r'\".*?\"','1',line)
+	entry = line.split(",")
 	license_type = entry[2]
 	amount_due = entry[12]
 
