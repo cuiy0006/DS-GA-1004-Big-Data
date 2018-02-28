@@ -7,6 +7,7 @@ import string
 # input comes from STDIN (stream data that goes to the program)
 for line in sys.stdin:
 	line = line.strip()
+	line = re.sub(r'\".*?\"','1',line)
 	entry = line.split(",")
 
 	vehicle_make = entry[-2]
