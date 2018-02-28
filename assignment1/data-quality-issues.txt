@@ -18,6 +18,7 @@ task8:
 there are lots of color and make as empty or with special characters like '.', '\', ';', '"'.
 I choose to remove the punctuations by default. It means '.WHITE\' is equivalent to 'WHITE' in my code.
 
+color -> 'NAP,'
 
 7362449975,2016-03-04,20,NY,20A-No Parking (Non-COM),18,18,0129P,,,347656,T108,18,T,T649739C,OMT,NY,W 27th St,4DSD,BLACK,TOYOT,2010
 7362450000,2016-03-07,81,NY,"81-No STD Ex C,A&D Dec, 30 Mn",9,9,1157P,,,333628,T108,9,T,DXY8377,PAS,NY,5th Ave,SUBN,BL,DODGE,2004
