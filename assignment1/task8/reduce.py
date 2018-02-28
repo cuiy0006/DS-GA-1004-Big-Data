@@ -10,6 +10,8 @@ for line in sys.stdin:
 	key, _ = line.split('\t', 1)
 
 	curr_column_name, curr_term = key.split(',')
+	if '*' in curr_term:
+		curr_term = curr_term.replace('*', ',')
 	if curr_column_name == 'vehicle_make':
 		if curr_term in make_dic:
 			make_dic[curr_term] += 1
