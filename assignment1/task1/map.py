@@ -13,7 +13,7 @@ for line in sys.stdin:
 	matches = re.findall(r'\".*?\"', line)
 	lst = list(map(lambda s:s.replace(',','*'), matches))
 	for i, match in enumerate(matches):
-		line.replace(match, lst[i])
+		line = line.replace(match, lst[i])
 	entry = line.split(',')
 
 	if 'open' in currfile:
