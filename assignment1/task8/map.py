@@ -8,7 +8,7 @@ import re
 # input comes from STDIN (stream data that goes to the program)
 for line in sys.stdin:
 	line = line.strip()
-	line = re.sub(r'\".*?\"','1',line)
+	line = re.sub(r'\".*?\"','2',line)
 	entry = line.split(",")
 
 	vehicle_make = entry[-2]

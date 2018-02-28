@@ -2,8 +2,6 @@
 
 import sys
 
-currentkey = None
-cnt = 0
 color_dic = {}
 make_dic = {}
 
@@ -11,24 +9,18 @@ for line in sys.stdin:
 	line = line.strip()
 	key, _ = line.split('\t', 1)
 
-	if key == currentkey:
-		cnt += 1
-	else:
-		if currentkey != None:
-			curr_column_name, curr_term = currentkey.split(',')
-			if curr_column_name == 'vehicle_make':
-				make_dic[curr_term] = cnt
-			else:
-				color_dic[curr_term] = cnt
-		currentkey = key
-		cnt = 1
-
-if currentkey != None:
-	curr_column_name, curr_term = currentkey.split(',')
+	curr_column_name, curr_term = key.split(',')
 	if curr_column_name == 'vehicle_make':
-		make_dic[curr_term] = cnt
+		if curr_term in make_dic:
+			make_dic[curr_term] += 1
+		else:
+			make_dic[curr_term] = 1
 	else:
-		color_dic[curr_term] = cnt
+		if curr_term in color_dic:
+			color_dic[curr_term] += 1
+		else:
+			color_dic[curr_term] = 1
+
 
 makes = sorted(list(make_dic.keys()))
 colors = sorted(list(color_dic.keys()))
