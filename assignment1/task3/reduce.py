@@ -13,6 +13,7 @@ for line in sys.stdin:
 		key, value = line.split('\t', 1)
 		amount_due = Decimal(value)
 	except:
+		print('{0:s}\terror'.format(line))
 		continue
 
 	if key == currentkey:
