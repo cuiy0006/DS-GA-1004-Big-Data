@@ -9,8 +9,8 @@ for line in sys.stdin:
 	line = line.strip()
 	entry = line.split(",")
 
-	plate_id = entry[14]
-	registration_state = entry[16]
+	plate_id = entry[14].strip()
+	registration_state = entry[16].strip()
 	if plate_id == 'T':
 		continue
 

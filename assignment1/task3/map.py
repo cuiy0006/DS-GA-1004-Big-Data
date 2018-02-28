@@ -9,8 +9,8 @@ for line in sys.stdin:
 	line = line.strip()
 	entry = line.split(",")
 
-	license_type = entry[2]
-	amount_due = entry[-6]
+	license_type = entry[2].strip().strip(string.punctuation).strip()
+	amount_due = entry[-6].strip().strip(string.punctuation).strip()
 	if license_type == 'NULL' or license_type == 'JZ' or license_type =='L744':
 		continue
 
