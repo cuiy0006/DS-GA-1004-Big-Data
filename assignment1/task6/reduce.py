@@ -34,5 +34,5 @@ if currentkey != None:
 			heappush(maxheap, (cnt, currentkey))
 
 maxheap.sort()
-for key, cnt in maxheap:
+for cnt, key in maxheap:
 	print('{0:s}\t{1:d}'.format(key, cnt)) 
