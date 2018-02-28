@@ -10,7 +10,7 @@ for line in sys.stdin:
 	currfile = os.environ.get('mapreduce_map_input_file')
 	line = line.strip()
 	line = re.sub(r'\".*?\"','1',line)
-	entry = line.split()
+	entry = line.split(',')
 
 	if 'open' in currfile:
 		summon_number = entry[0]
