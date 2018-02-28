@@ -9,7 +9,7 @@ import re
 for line in sys.stdin:
 	line = line.strip()
 	matches = re.findall(r'\".*?\"', line)
-	lst = list(map(lambda s:s[1:-1].replace(',',''), matches))
+	lst = list(map(lambda s:s[1:-1], matches))
 	for i, match in enumerate(matches):
 		line = line.replace(match, lst[i])
 	entry = line.split(',')
