@@ -1,4 +1,5 @@
-vehicle_make	, 5917
+vehicle_make	., 1
+vehicle_make	.LEXU, 1
 vehicle_make	1, 1
 vehicle_make	12, 1
 vehicle_make	1C, 1
@@ -85,7 +86,8 @@ vehicle_make	BLUEB, 5
 vehicle_make	BLUIC, 1
 vehicle_make	BLUTE, 1
 vehicle_make	BMI, 1
-vehicle_make	BMW, 33992
+vehicle_make	BMW, 33989
+vehicle_make	BMW., 3
 vehicle_make	BMWI, 1
 vehicle_make	BMWQ, 1
 vehicle_make	BMX, 1
@@ -354,7 +356,8 @@ vehicle_make	GILL, 5
 vehicle_make	GILLI, 3
 vehicle_make	GLA, 1
 vehicle_make	GLBEN, 3
-vehicle_make	GMC, 26679
+vehicle_make	GMC, 26677
+vehicle_make	GMC., 2
 vehicle_make	GMCS, 1
 vehicle_make	GMV, 1
 vehicle_make	GNC, 4
@@ -481,7 +484,7 @@ vehicle_make	INTR, 9
 vehicle_make	INTY, 1
 vehicle_make	INTZ, 3
 vehicle_make	IS, 1
-vehicle_make	ISU, 1
+vehicle_make	ISU., 1
 vehicle_make	ISUA, 2
 vehicle_make	ISUZU, 10989
 vehicle_make	ISZ, 2
@@ -533,8 +536,9 @@ vehicle_make	KENWO, 4376
 vehicle_make	KEWD, 1
 vehicle_make	KI/M, 4
 vehicle_make	KI/MO, 1
-vehicle_make	KIA, 9470
+vehicle_make	KIA, 9469
 vehicle_make	KIA M, 1
+vehicle_make	KIA., 1
 vehicle_make	KIDRA, 1
 vehicle_make	KIDRO, 1
 vehicle_make	KING, 1
@@ -564,13 +568,12 @@ vehicle_make	LAMB, 1
 vehicle_make	LAMBO, 12
 vehicle_make	LAN/R, 1
 vehicle_make	LANCE, 1
-vehicle_make	LAND, 1
+vehicle_make	LAND/, 1
 vehicle_make	LAR, 3
 vehicle_make	LDV, 1
 vehicle_make	LENWO, 1
 vehicle_make	LESUS, 1
 vehicle_make	LEUXS, 1
-vehicle_make	LEXU, 1
 vehicle_make	LEXUS, 23694
 vehicle_make	LIM, 1
 vehicle_make	LIMO, 1
@@ -702,6 +705,7 @@ vehicle_make	NISSA, 81869
 vehicle_make	NLS, 1
 vehicle_make	NO/BU, 3
 vehicle_make	NO/CH, 1
+vehicle_make	NONE, 5916
 vehicle_make	NOT D, 2
 vehicle_make	NS, 3
 vehicle_make	NS/OT, 11702
@@ -755,7 +759,7 @@ vehicle_make	POINT, 1
 vehicle_make	POITH, 1
 vehicle_make	PONDI, 1
 vehicle_make	PONIA, 1
-vehicle_make	PONT, 1
+vehicle_make	PONT-, 1
 vehicle_make	PONTA, 3
 vehicle_make	PONTI, 2218
 vehicle_make	PORSC, 2251
@@ -872,7 +876,8 @@ vehicle_make	ST/C, 1
 vehicle_make	ST/CR, 1
 vehicle_make	ST/Q, 4
 vehicle_make	ST/QU, 3
-vehicle_make	STAR, 75
+vehicle_make	STAR, 74
+vehicle_make	STAR/, 1
 vehicle_make	STARC, 83
 vehicle_make	STARK, 3
 vehicle_make	STE, 3
@@ -1113,7 +1118,8 @@ vehicle_make	WON, 1
 vehicle_make	WOR, 2
 vehicle_make	WOR H, 1
 vehicle_make	WORH, 3
-vehicle_make	WORK, 1067
+vehicle_make	WORK, 1064
+vehicle_make	WORK/, 3
 vehicle_make	WORKH, 4072
 vehicle_make	WORKL, 1
 vehicle_make	WORKS, 1
@@ -1139,7 +1145,6 @@ vehicle_make	ZIM, 4
 vehicle_make	ZUMA, 7
 vehicle_make	ZUMAX, 1
 vehicle_make	ZXYV, 1
-vehicle_color	, 12977
 vehicle_color	14, 1
 vehicle_color	AGRAY, 1
 vehicle_color	AMETH, 1
@@ -1170,7 +1175,8 @@ vehicle_color	BEIGE, 177
 vehicle_color	BEIGR, 1
 vehicle_color	BERA, 1
 vehicle_color	BERGA, 1
-vehicle_color	BG, 103
+vehicle_color	BG, 101
+vehicle_color	BG., 2
 vehicle_color	BGDY, 1
 vehicle_color	BGE, 55
 vehicle_color	BHELL, 1
@@ -1184,7 +1190,9 @@ vehicle_color	BIMK, 1
 vehicle_color	BIQW, 1
 vehicle_color	BIRCH, 1
 vehicle_color	BJ, 1
-vehicle_color	BK, 132600
+vehicle_color	BK, 132526
+vehicle_color	BK., 35
+vehicle_color	BK/, 39
 vehicle_color	BK/GY, 1
 vehicle_color	BK/RD, 2
 vehicle_color	BKB, 7
@@ -1213,8 +1221,10 @@ vehicle_color	BKW, 6
 vehicle_color	BKWH, 9
 vehicle_color	BKWT, 1
 vehicle_color	BKYE, 1
-vehicle_color	BL, 53767
+vehicle_color	BL, 53695
 vehicle_color	BL WH, 1
+vehicle_color	BL., 10
+vehicle_color	BL/, 62
 vehicle_color	BL/PU, 1
 vehicle_color	BL/WH, 1
 vehicle_color	BL/WT, 1
@@ -1240,8 +1250,9 @@ vehicle_color	BLGR, 33
 vehicle_color	BLGY, 81
 vehicle_color	BLIE, 2
 vehicle_color	BLIUE, 1
-vehicle_color	BLK, 7290
+vehicle_color	BLK, 7283
 vehicle_color	BLK-B, 1
+vehicle_color	BLK., 7
 vehicle_color	BLK/B, 3
 vehicle_color	BLKAC, 1
 vehicle_color	BLKJ, 2
@@ -1260,7 +1271,8 @@ vehicle_color	BLU, 965
 vehicle_color	BLU W, 1
 vehicle_color	BLU-B, 1
 vehicle_color	BLU/B, 1
-vehicle_color	BLUE, 25747
+vehicle_color	BLUE, 25746
+vehicle_color	BLUE., 1
 vehicle_color	BLUES, 1
 vehicle_color	BLUIE, 1
 vehicle_color	BLULE, 1
@@ -1269,11 +1281,14 @@ vehicle_color	BLVD, 1
 vehicle_color	BLW, 163
 vehicle_color	BLWH, 28
 vehicle_color	BMW, 1
-vehicle_color	BN, 358
+vehicle_color	BN, 357
+vehicle_color	BN., 1
 vehicle_color	BND, 2
 vehicle_color	BOWN, 1
 vehicle_color	BP, 1
-vehicle_color	BR, 8341
+vehicle_color	BR, 8333
+vehicle_color	BR., 1
+vehicle_color	BR/, 7
 vehicle_color	BRB, 2
 vehicle_color	BRBL, 3
 vehicle_color	BRD, 1
@@ -1314,7 +1329,8 @@ vehicle_color	BUGDY, 1
 vehicle_color	BUICK, 3
 vehicle_color	BUN, 2
 vehicle_color	BUR, 11
-vehicle_color	BURG, 87
+vehicle_color	BURG, 86
+vehicle_color	BURG., 1
 vehicle_color	BURGA, 20
 vehicle_color	BURGN, 1
 vehicle_color	BURGU, 52
@@ -1335,7 +1351,8 @@ vehicle_color	CHMPG, 1
 vehicle_color	CHROM, 3
 vehicle_color	CHRYS, 1
 vehicle_color	CL, 3
-vehicle_color	CM, 4
+vehicle_color	CM, 2
+vehicle_color	CM., 2
 vehicle_color	COL, 1
 vehicle_color	COM, 2
 vehicle_color	COOPE, 1
@@ -1351,8 +1368,8 @@ vehicle_color	DBLUE, 2
 vehicle_color	DGR, 7
 vehicle_color	DGRAY, 5
 vehicle_color	DH, 1
-vehicle_color	DK, 801
 vehicle_color	DK BL, 1
+vehicle_color	DK/, 801
 vehicle_color	DKB, 254
 vehicle_color	DKBK, 1
 vehicle_color	DKBL, 172
@@ -1395,8 +1412,9 @@ vehicle_color	GIKD, 1
 vehicle_color	GILD, 1
 vehicle_color	GIVER, 1
 vehicle_color	GK, 1
-vehicle_color	GL, 5600
+vehicle_color	GL, 5594
 vehicle_color	GL-SL, 1
+vehicle_color	GL/, 6
 vehicle_color	GLB, 6
 vehicle_color	GLBL, 2
 vehicle_color	GLD, 142
@@ -1408,14 +1426,18 @@ vehicle_color	GLRD, 1
 vehicle_color	GLT, 2
 vehicle_color	GLTN, 1
 vehicle_color	GM, 1
-vehicle_color	GN, 443
+vehicle_color	GN, 439
 vehicle_color	GN BL, 1
 vehicle_color	GN SL, 1
+vehicle_color	GN., 4
 vehicle_color	GNY, 2
-vehicle_color	GOLD, 3994
+vehicle_color	GOLD, 3990
+vehicle_color	GOLD., 3
+vehicle_color	GOLD/, 1
 vehicle_color	GOLDE, 2
-vehicle_color	GR, 20035
+vehicle_color	GR, 20008
 vehicle_color	GR BL, 1
+vehicle_color	GR/, 27
 vehicle_color	GRA, 3
 vehicle_color	GRAFI, 2
 vehicle_color	GRAHY, 1
@@ -1423,13 +1445,15 @@ vehicle_color	GRAND, 1
 vehicle_color	GRASY, 1
 vehicle_color	GRAT, 5
 vehicle_color	GRAU, 2
-vehicle_color	GRAY, 5643
+vehicle_color	GRAY, 5640
+vehicle_color	GRAY., 3
 vehicle_color	GRB, 4
 vehicle_color	GRBK, 1
 vehicle_color	GRBL, 4
 vehicle_color	GRBR, 1
 vehicle_color	GRE, 12
-vehicle_color	GREE, 3
+vehicle_color	GREE, 2
+vehicle_color	GREE/, 1
 vehicle_color	GREEB, 3
 vehicle_color	GREEE, 1
 vehicle_color	GREEM, 3
@@ -1440,13 +1464,16 @@ vehicle_color	GREN, 2
 vehicle_color	GRET, 3
 vehicle_color	GRETY, 1
 vehicle_color	GREU, 3
-vehicle_color	GREY, 36083
+vehicle_color	GREY, 36078
+vehicle_color	GREY., 4
+vehicle_color	GREY/, 1
 vehicle_color	GRG, 10
 vehicle_color	GRGL, 2
 vehicle_color	GRGR, 10
 vehicle_color	GRGY, 26
 vehicle_color	GRMR, 2
-vehicle_color	GRN, 626
+vehicle_color	GRN, 625
+vehicle_color	GRN., 1
 vehicle_color	GRN/B, 1
 vehicle_color	GRPR, 1
 vehicle_color	GRR, 1
@@ -1460,7 +1487,8 @@ vehicle_color	GRU, 1
 vehicle_color	GRV, 1
 vehicle_color	GRW, 29
 vehicle_color	GRWH, 2
-vehicle_color	GRY, 3182
+vehicle_color	GRY, 3179
+vehicle_color	GRY., 3
 vehicle_color	GRY/G, 5
 vehicle_color	GRYE, 1
 vehicle_color	GRYTN, 1
@@ -1469,8 +1497,10 @@ vehicle_color	GTAY, 2
 vehicle_color	GU, 3
 vehicle_color	GV, 1
 vehicle_color	GW, 1
-vehicle_color	GY, 159905
+vehicle_color	GY, 159752
 vehicle_color	GY BK, 1
+vehicle_color	GY., 23
+vehicle_color	GY/, 130
 vehicle_color	GY/WT, 1
 vehicle_color	GYB, 16
 vehicle_color	GYBK, 16
@@ -1503,9 +1533,9 @@ vehicle_color	LGR, 1
 vehicle_color	LGT, 3
 vehicle_color	LIGHT, 5
 vehicle_color	LIME, 6
-vehicle_color	LT, 893
 vehicle_color	LT BL, 5
 vehicle_color	LT GL, 1
+vehicle_color	LT/, 893
 vehicle_color	LT/BL, 1
 vehicle_color	LT/GR, 1
 vehicle_color	LTB, 131
@@ -1538,7 +1568,8 @@ vehicle_color	MATOO, 1
 vehicle_color	METAL, 2
 vehicle_color	MHGNY, 1
 vehicle_color	MN, 23
-vehicle_color	MR, 3372
+vehicle_color	MR, 3371
+vehicle_color	MR/, 1
 vehicle_color	MRB, 2
 vehicle_color	MRBK, 1
 vehicle_color	MRG, 2
@@ -1552,6 +1583,7 @@ vehicle_color	MULT, 6
 vehicle_color	MULTI, 25
 vehicle_color	N, 1
 vehicle_color	NA, 1
+vehicle_color	NAP,, 1
 vehicle_color	NAROO, 1
 vehicle_color	NAVY, 8
 vehicle_color	NH HE, 1
@@ -1559,6 +1591,7 @@ vehicle_color	NN, 1
 vehicle_color	NO, 23
 vehicle_color	NOC, 41
 vehicle_color	NOCL, 32
+vehicle_color	NONE, 12976
 vehicle_color	NROWN, 1
 vehicle_color	NULTI, 1
 vehicle_color	OANGE, 1
@@ -1567,7 +1600,8 @@ vehicle_color	OL, 1
 vehicle_color	OMNI, 1
 vehicle_color	ONANG, 1
 vehicle_color	ONG, 16
-vehicle_color	OR, 1366
+vehicle_color	OR, 1365
+vehicle_color	OR/, 1
 vehicle_color	OR/WH, 1
 vehicle_color	ORA, 1
 vehicle_color	ORAG, 1
@@ -1595,21 +1629,25 @@ vehicle_color	PINK, 9
 vehicle_color	PK, 18
 vehicle_color	PL, 4
 vehicle_color	PLE, 4
-vehicle_color	PR, 550
+vehicle_color	PR, 548
+vehicle_color	PR/, 2
 vehicle_color	PRG, 1
 vehicle_color	PRGY, 1
 vehicle_color	PRL, 3
 vehicle_color	PRLST, 1
 vehicle_color	PRPK, 1
 vehicle_color	PUR, 6
-vehicle_color	PURP, 5
+vehicle_color	PURP, 4
+vehicle_color	PURP., 1
 vehicle_color	PURPL, 724
 vehicle_color	Q, 1
 vehicle_color	R, 4
-vehicle_color	RD, 34121
+vehicle_color	RD, 34056
 vehicle_color	RD B, 1
 vehicle_color	RD BK, 10
 vehicle_color	RD WH, 1
+vehicle_color	RD., 10
+vehicle_color	RD/, 55
 vehicle_color	RD/WH, 1
 vehicle_color	RD/WT, 3
 vehicle_color	RDB, 12
@@ -1631,7 +1669,8 @@ vehicle_color	RDTN, 4
 vehicle_color	RDW, 136
 vehicle_color	RDWH, 12
 vehicle_color	RDYW, 1
-vehicle_color	RED, 22852
+vehicle_color	RED, 22847
+vehicle_color	RED., 5
 vehicle_color	RED/B, 1
 vehicle_color	REDC, 1
 vehicle_color	RL, 1
@@ -1647,23 +1686,26 @@ vehicle_color	SAND, 2
 vehicle_color	SC, 1
 vehicle_color	SI, 5
 vehicle_color	SIILV, 1
-vehicle_color	SIL, 822
+vehicle_color	SIL, 820
 vehicle_color	SIL V, 1
+vehicle_color	SIL., 2
 vehicle_color	SIL/S, 4
 vehicle_color	SIL/W, 1
 vehicle_color	SILER, 3
 vehicle_color	SILEV, 2
 vehicle_color	SILR, 1
-vehicle_color	SILV, 159
+vehicle_color	SILV, 157
+vehicle_color	SILV., 2
 vehicle_color	SILVE, 26813
 vehicle_color	SILVR, 1088
 vehicle_color	SIV, 2
 vehicle_color	SIVER, 3
 vehicle_color	SIVLE, 1
 vehicle_color	SIVR, 1
-vehicle_color	SL, 1241
+vehicle_color	SL, 1217
 vehicle_color	SL GY, 1
 vehicle_color	SL-BL, 1
+vehicle_color	SL., 24
 vehicle_color	SLATE, 1
 vehicle_color	SLIV, 1
 vehicle_color	SLIVE, 2
@@ -1681,7 +1723,8 @@ vehicle_color	SV, 5
 vehicle_color	SVR, 1
 vehicle_color	T, 1
 vehicle_color	TAM, 2
-vehicle_color	TAN, 4603
+vehicle_color	TAN, 4602
+vehicle_color	TAN., 1
 vehicle_color	TANH, 1
 vehicle_color	TAUG, 1
 vehicle_color	TAUPE, 4
@@ -1693,7 +1736,9 @@ vehicle_color	TH, 2
 vehicle_color	TIN, 1
 vehicle_color	TK, 1
 vehicle_color	TL, 1
-vehicle_color	TN, 13407
+vehicle_color	TN, 13401
+vehicle_color	TN., 4
+vehicle_color	TN/, 2
 vehicle_color	TNBK, 1
 vehicle_color	TNBL, 2
 vehicle_color	TNBR, 1
@@ -1715,7 +1760,7 @@ vehicle_color	UD, 1
 vehicle_color	UNK, 40
 vehicle_color	UNKNO, 43
 vehicle_color	UPS, 1
-vehicle_color	VAL, 1
+vehicle_color	VAL., 1
 vehicle_color	VIH, 1
 vehicle_color	VN  R, 1
 vehicle_color	VN  U, 1
@@ -1724,13 +1769,17 @@ vehicle_color	VOL, 1
 vehicle_color	VOLKS, 1
 vehicle_color	VROWN, 1
 vehicle_color	VW, 1
-vehicle_color	W, 67
+vehicle_color	W, 66
+vehicle_color	W., 1
 vehicle_color	W/BLU, 2
 vehicle_color	WD, 1
 vehicle_color	WG, 3
 vehicle_color	WGH, 1
 vehicle_color	WGUTE, 3
-vehicle_color	WH, 149629
+vehicle_color	WH, 149495
+vehicle_color	WH-, 1
+vehicle_color	WH., 6
+vehicle_color	WH/, 127
 vehicle_color	WH/BL, 7
 vehicle_color	WH/GR, 3
 vehicle_color	WH/RD, 2
@@ -1749,7 +1798,8 @@ vehicle_color	WHI, 1370
 vehicle_color	WHI-W, 1
 vehicle_color	WHIE, 5
 vehicle_color	WHIET, 3
-vehicle_color	WHIT, 27
+vehicle_color	WHIT, 26
+vehicle_color	WHIT., 1
 vehicle_color	WHITE, 130076
 vehicle_color	WHITR, 1
 vehicle_color	WHITY, 1
@@ -1760,7 +1810,8 @@ vehicle_color	WHOR, 7
 vehicle_color	WHPR, 1
 vehicle_color	WHR, 16
 vehicle_color	WHRD, 19
-vehicle_color	WHT, 2949
+vehicle_color	WHT, 2947
+vehicle_color	WHT., 2
 vehicle_color	WHT/G, 1
 vehicle_color	WHT/W, 4
 vehicle_color	WHTE, 7
@@ -1779,8 +1830,9 @@ vehicle_color	WK, 1
 vehicle_color	WL, 3
 vehicle_color	WLD, 1
 vehicle_color	WQHIT, 1
-vehicle_color	WT, 2373
+vehicle_color	WT, 2351
 vehicle_color	WT RD, 1
+vehicle_color	WT., 22
 vehicle_color	WT/BL, 2
 vehicle_color	WT/TN, 1
 vehicle_color	WTE, 4
@@ -1791,7 +1843,7 @@ vehicle_color	WWHIT, 1
 vehicle_color	WWJE, 1
 vehicle_color	WY, 1
 vehicle_color	XXX, 9
-vehicle_color	YAAY, 1
+vehicle_color	YAAY., 1
 vehicle_color	YEL, 54
 vehicle_color	YELL, 59
 vehicle_color	YELLL, 1
@@ -1805,7 +1857,9 @@ vehicle_color	YLLW, 4
 vehicle_color	YLW, 5
 vehicle_color	YORK, 1
 vehicle_color	YSMX, 1
-vehicle_color	YW, 8372
+vehicle_color	YW, 8363
+vehicle_color	YW., 1
+vehicle_color	YW/, 8
 vehicle_color	YWB, 24
 vehicle_color	YWBK, 2
 vehicle_color	YWBL, 3
@@ -1815,5 +1869,5 @@ vehicle_color	YWGY, 4
 vehicle_color	YWPR, 1
 vehicle_color	YWW, 8
 vehicle_color	YYNNE, 1
-vehicle_color	Z L, 1
+vehicle_color	Z L., 1
 vehicle_color	ZW, 1
