@@ -1,0 +1,20 @@
+task1:
+violation_description, street_name, plate_id may contain "" and comma, this will let the split operation wrong
+For example, "street1, block2, house3"
+
+task3:
+same as task1
+
+task4:
+same as task1
+
+task6:
+same as task1
+
+task8:
+same as task1
+there is a color value of "NAP,"
+empty -> 'NONE'
+
+for the value that we do not care, replace regular expression '\".*?\"' with '1'
+for the value that we care about, replace comma in the regular expression '\".*?\"' with '*', in the reducer, replace '*' with comma
