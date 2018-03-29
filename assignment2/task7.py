@@ -10,6 +10,7 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: wordcount <file>", file=sys.stderr)
         exit(-1)
+    sc = SparkContext()
 
     parking_path = sys.argv[1]
 
