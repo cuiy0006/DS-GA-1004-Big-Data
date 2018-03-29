@@ -1,0 +1,369 @@
+>>> import numpy as np
+>>> from math import sqrt
+>>> from operator import add
+>>> from pyspark.mllib.clustering import KMeans, KMeansModel
+>>> csvfile = sc.textFile('/user/ecc290/lab9/sensordatasmall/part-00000')
+>>> sensordata = csvfile.map(lambda line:line.split(','))
+>>> sdfilt = sensordata.filter(lambda x:np.count_nonzero(np.array([int(x[6], int(x[7], int(x[8])]))>0)
+  File "<stdin>", line 1
+    sdfilt = sensordata.filter(lambda x:np.count_nonzero(np.array([int(x[6], int(x[7], int(x[8])]))>0)
+                                                                                                ^
+SyntaxError: invalid syntax
+>>> sdfilt = sensordata.filter(lambda x:np.count_nonzero(np.array([int(x[6]), int(x[7]), int(x[8])]))>0)
+>>> sdfilt.count()
+45674                                                                           
+>>> vso = sdfilt.map(lambda x:np.array(int(x[6]), int(x[7]), int(x[8])]))
+  File "<stdin>", line 1
+    vso = sdfilt.map(lambda x:np.array(int(x[6]), int(x[7]), int(x[8])]))
+                                                                      ^
+SyntaxError: invalid syntax
+>>> vso = sdfilt.map(lambda x:np.array([int(x[6]), int(x[7]), int(x[8])]))
+>>> for i in range(1,11):
+...     clusters = KMeans.train(vso, i, maxIterations=10, initializationMode='random')
+...     WSSSE = vso.map(
+Traceback (most recent call last):
+  File "/share/apps/spark/spark-2.2.0-bin-hadoop2.6/python/pyspark/context.py", line 237, in signal_handler
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+>>> def error(point):
+...     center = clusters.centers[clusters.predict(point)]
+...     return sqrt(sum([x**2 for x in (point-center)]))
+... 
+>>> for i in range(1,11):
+...     clusters = KMeans.train(vso, i, maxIterations=10, initializationMode='random')
+...     WSSSE = vso.map(lambda point:error(point)).reduce(add)
+...     print('Within Set Sum of Squared Error, k=' + str(i) + ':' + str(WSSSE))
+... 
+18/03/24 15:31:32 WARN BLAS: Failed to load implementation from: com.github.fommil.netlib.NativeSystemBLAS
+18/03/24 15:31:32 WARN BLAS: Failed to load implementation from: com.github.fommil.netlib.NativeRefBLAS
+Within Set Sum of Squared Error, k=1:752528.8779927501                          
+Within Set Sum of Squared Error, k=2:425451.94074582454                         
+Within Set Sum of Squared Error, k=3:347912.3059200358                          
+Within Set Sum of Squared Error, k=4:312961.6722334135                          
+Within Set Sum of Squared Error, k=5:264116.5134406826                          
+Within Set Sum of Squared Error, k=6:236327.1529360757                          
+Within Set Sum of Squared Error, k=7:221101.24062299426                         
+Within Set Sum of Squared Error, k=8:210849.8740771604                          
+Within Set Sum of Squared Error, k=9:186030.56534391647                         
+Within Set Sum of Squared Error, k=10:172930.67102496198                        
+>>> clusters = KMeans.train(vso, 3, maxIterations=10, initializationMode='random')
+>>> for i in range(0, len(clusters.centers)):                                   
+...     print('cluster '+ str(i) + ':' + str(clusters.centers[i]))
+... 
+cluster 0:[  6.6006854   17.18862234  35.0982865 ]
+cluster 1:[  4.39997584  66.31656197   5.01093259]
+cluster 2:[  6.39082619  53.59716813   9.34628603]
+>>> clusters = KMeans.train(vso, 4, maxIterations=10, initializationMode='random')
+>>> for i in range(0, len(clusters.centers)):
+...     print('cluster '+ str(i) + ':' + str(clusters.centers[i]))
+... 
+cluster 0:[  8.55914486  55.19267602  12.65106555]
+cluster 1:[  4.16975156  69.36019004   4.5304365 ]
+cluster 2:[  6.59553791  17.20339447  35.05940323]
+cluster 3:[  3.21768252  55.67820198   3.97871549]
+>>> def addclustercols(x):
+...     point = np.array([float(x[6]), float(x[7]), float(x[8])])
+...     center = clusters.centers[0]
+...     mindist = sqrt(sum([y**2 for y in (point-center)]))
+...     cl = 0
+...     for i in range(1, len(clusters.centers)):
+...             center = clusters.centers[i]
+...             distance = sqrt(sum([y**2 for y in (point - center)]))
+...             if distance < mindist:
+...                     cl = i
+...                     mindist = distance
+...     clcenter = clusters.centers[cl]
+...     return (int(x[0]), int(x[1]), int(x[2]), int(x[3]), int(x[4]), float(x[5]), int(x[6]), int(x[7]), int(x[8]), int(cl), float(clcenter[0]), float(clcenter[1]), float(clcenter[2]), float(mindist))
+... 
+>>> rdd_w_clusts = sdfilt.map(lambda x: addclustercols(x))
+>>> rdd_w_clusts.map(lambda y: (y[9],1)).reduceByKey(add).top(len(clusters.centers))
+[(3, 13437), (2, 7306), (1, 10103), (0, 14828)]                                 
+>>> schema_sd = spark.createDataFrame(rdd_w_clusts, ('highway','sensorloc', 'sensorid', 'doy', 'dow', 'time','p_v','p_s','p_o', 'cluster', 'c_v', 'c_s', 'c_o', 'dist'))
+>>> 
+>>> schema_sd.createOrReplaceTempView("sd")
+>>> spark.sql("SELECT * FROM sd WHERE dist>50").show()
++-------+---------+--------+-------+---+-------+---+---+---+-------+-----------------+------------------+-----------------+------------------+
+|highway|sensorloc|sensorid|    doy|dow|   time|p_v|p_s|p_o|cluster|              c_v|               c_s|              c_o|              dist|
++-------+---------+--------+-------+---+-------+---+---+---+-------+-----------------+------------------+-----------------+------------------+
+|      0|       44|     145|2014336|  2| 471.33|  1|  0| 86|      2|6.595537914043252|17.203394470298385|35.05940323022173|54.057480750672546|
+|      0|       44|     145|2014336|  2| 471.33|  1|  0| 86|      2|6.595537914043252|17.203394470298385|35.05940323022173|54.057480750672546|
+|      0|       44|     145|2014336|  2|  528.0|  2|  8| 85|      2|6.595537914043252|17.203394470298385|35.05940323022173|50.989063966863675|
+|      0|       44|     145|2014336|  2| 527.67|  2|  8| 85|      2|6.595537914043252|17.203394470298385|35.05940323022173|50.989063966863675|
+|      0|       44|     145|2014335|  1| 484.33|  2|  4| 85|      2|6.595537914043252|17.203394470298385|35.05940323022173|51.860503275414736|
+|      0|       44|     145|2014335|  1| 476.67|  0|  0|100|      2|6.595537914043252|17.203394470298385|35.05940323022173|  67.5036222027471|
+|      0|       44|     145|2014335|  1| 466.67|  2|  4| 88|      2|6.595537914043252|17.203394470298385|35.05940323022173| 54.75541416698418|
+|      0|       44|     145|2014331|  4|  952.0|  1|  0| 86|      2|6.595537914043252|17.203394470298385|35.05940323022173|54.057480750672546|
+|      0|       44|     145|2014331|  4| 924.33|  2|  3| 86|      2|6.595537914043252|17.203394470298385|35.05940323022173| 53.08295190039318|
+|      0|       44|     145|2014331|  4|  865.0|  1|  7| 92|      2|6.595537914043252|17.203394470298385|35.05940323022173|58.117560717587715|
+|      0|       44|     145|2014331|  4| 865.33|  1|  7| 92|      2|6.595537914043252|17.203394470298385|35.05940323022173|58.117560717587715|
+|      0|       44|     145|2014330|  3|  495.0|  0|  0| 87|      2|6.595537914043252|17.203394470298385|35.05940323022173| 55.11155499962758|
+|      0|       44|     145|2014329|  2| 1051.0|  1| 10| 85|      2|6.595537914043252|17.203394470298385|35.05940323022173|  50.7667424813116|
+|      0|       44|     145|2014329|  2| 538.67|  2|  0| 87|      2|6.595537914043252|17.203394470298385|35.05940323022173| 54.90811727623524|
+|      0|       44|     145|2014329|  2| 538.33|  2|  0| 87|      2|6.595537914043252|17.203394470298385|35.05940323022173| 54.90811727623524|
+|      0|       44|     145|2014329|  2| 460.33|  1|  0| 90|      2|6.595537914043252|17.203394470298385|35.05940323022173| 57.84233742914924|
+|      0|       44|     145|2014329|  2|1062.33|  1|  4| 83|      2|6.595537914043252|17.203394470298385|35.05940323022173| 50.03938937205645|
+|      0|       44|     145|2014329|  2|1062.33|  1|  4| 83|      2|6.595537914043252|17.203394470298385|35.05940323022173| 50.03938937205645|
+|      0|       44|     145|2014329|  2|  861.0|  1|  0| 89|      2|6.595537914043252|17.203394470298385|35.05940323022173| 56.89336345944052|
+|      0|       44|     145|2014329|  2|  460.0|  0|  0|100|      2|6.595537914043252|17.203394470298385|35.05940323022173|  67.5036222027471|
++-------+---------+--------+-------+---+-------+---+---+---+-------+-----------------+------------------+-----------------+------------------+
+only showing top 20 rows
+
+>>> stats = spark.sql("SELECT cluster, c_v, c_s, c_o, count(*) AS num, max(dist) AS maxdist, avg(dist) AS avgdist, stddev_pop(dist) AS stdev FROM sd GROUP BY cluster, c_v, c_s, c_o ORDER BY cluster")
+>>> stats.show()
++-------+------------------+------------------+------------------+-----+------------------+------------------+------------------+
+|cluster|               c_v|               c_s|               c_o|  num|           maxdist|           avgdist|             stdev|
++-------+------------------+------------------+------------------+-----+------------------+------------------+------------------+
+|      0| 8.559144861073644|55.192676018343676|12.651065551659023|14828|25.496361594612093|5.9466931249868225|3.8145164517951673|
+|      1| 4.169751558942888| 69.36019004256161|  4.53043650400871|10103|14.232064654461029| 5.541908043772449| 1.993200232321982|
+|      2| 6.595537914043252|17.203394470298385| 35.05940323022173| 7306|  67.5036222027471|12.326121072530276| 8.553413333228079|
+|      3|3.2176825184192897| 55.67820197960854| 3.978715487087891|13437|28.837732479687283|5.5914626698741055|1.9123507739175327|
++-------+------------------+------------------+------------------+-----+------------------+------------------+------------------+
+
+>>> def inclust(x, t): cl = x[9]
+... c_v = x[10]
+  File "<stdin>", line 2
+    c_v = x[10]
+      ^
+SyntaxError: invalid syntax
+>>> c_s = x[11]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'x' is not defined
+>>> c_o = x[12]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'x' is not defined
+>>> distance = x[13]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'x' is not defined
+>>> if float(distance) > float(t):
+... cl = -1 c_v = 0.0 c_s = 0.0 c_o = 0.0
+  File "<stdin>", line 2
+    cl = -1 c_v = 0.0 c_s = 0.0 c_o = 0.0
+     ^
+IndentationError: expected an indented block
+>>> def inclust(x,t):
+...     cl = x[9]
+...     c_v = x[10]
+...     c_s = x[11]
+...     c_o = x[12]
+...     distance = x[13]
+...     if float(distance) > float(t):
+...             cl = -1
+...             c_v = 0.0
+...             c_s = 0.0
+...             c_o = 0.0
+...     return (int(x[0]), int(x[1]), int(x[2]), int(x[3]), int(x[4]), float(x[5]), int(x[6]), int(x[7]), int(x[8]), int(cl), float(c_v), float(c_s), float(c_o), float(distance))
+... 
+>>> rdd_w_clusts_wnullclust = rdd_w_clusts.map(lambda x: inclust(x,20))
+>>> rdd_w_clusts_wnullclust.map(lambda y: (y[9],1)).reduceByKey(add).top(5)
+[(3, 13435), (2, 6216), (1, 10103), (0, 14565), (-1, 1355)]                     
+>>> schema_sd = spark.createDataFrame(rdd_w_clusts_wnullclust, ('highway','sensorloc', 'sensorid', 'doy', 'dow', 'time','p_v','p_s','p_o', 'cluster', 'c_v','c_s','c_o','dist'))
+>>> schema_sd.createOrReplaceTempView("sd_nc")
+>>> spark.sql("SELECT p_v, p_s, p_o FROM sd_nc WHERE cluster=-1 LIMIT 100").show(100)
++---+---+---+
+|p_v|p_s|p_o|
++---+---+---+
+|  8| 28| 18|
+|  3|  7| 54|
+|  3|  7| 54|
+|  6| 31| 17|
+|  3|  2| 79|
+|  3|  5| 68|
+|  3|  2| 79|
+|  7| 28| 18|
+|  7| 28| 18|
+|  4|  5| 72|
+|  5| 11| 55|
+|  3|  9| 58|
+|  3|  9| 58|
+|  4|  5| 51|
+|  4|  5| 57|
+|  4|  5| 51|
+|  4|  5| 57|
+|  9| 34| 18|
+|  9| 37| 23|
+|  7| 33| 19|
+|  8| 31| 18|
+|  4|  8| 56|
+|  4|  8| 56|
+|  6|  8| 54|
+|  8| 35| 20|
+|  7| 28| 18|
+|  4|  9| 54|
+|  9| 32| 21|
+|  7| 34| 18|
+|  7| 34| 18|
+|  4| 13| 59|
+|  9| 35| 23|
+|  1|  0|  0|
+|  9| 33| 22|
+|  9| 35| 24|
+|  6| 28| 17|
+|  3| 30| 15|
+|  7| 33| 21|
+|  7| 33| 16|
+|  7| 34| 22|
+|  7| 33| 22|
+|  5| 34| 15|
+|  7| 35| 21|
+|  8| 34| 18|
+|  6| 32| 15|
+|  8| 34| 20|
+|  9| 33| 20|
+|  6| 32| 20|
+|  6| 30| 17|
+|  9| 38| 23|
+|  3|  4| 50|
+|  5|  9| 56|
+|  4|  9| 56|
+|  3|  5| 51|
+|  5|  5| 56|
+|  8| 31| 19|
+|  7| 32| 19|
+|  9| 33| 20|
+|  7| 12| 60|
+|  8| 34| 17|
+|  4| 19| 14|
+|  9| 32| 21|
+|  8| 33| 18|
+|  9| 35| 18|
+|  1|  0|  0|
+| 10| 33| 23|
+|  5| 15| 57|
+|  7|  9| 54|
+|  4|  4| 63|
+|  5| 10| 54|
+|  3| 11| 64|
+|  6| 18| 63|
+|  3|  5| 69|
+|  1|  0| 67|
+|  4| 12| 56|
+|  4| 12| 56|
+|  4| 10| 71|
+|  8| 32| 17|
+| 11| 38| 23|
+|  6| 34| 13|
+|  7| 33| 15|
+|  8| 35| 18|
+|  5|  9| 58|
+|  3| 11| 54|
+|  3|  9| 54|
+|  7| 30| 14|
+|  9| 32| 20|
+|  1|  0|  0|
+|  9| 33| 23|
+| 11| 34| 24|
+|  6| 11| 61|
+|  6| 11| 61|
+|  6| 11| 61|
+|  4| 16| 15|
+|  9| 32| 20|
+|  9| 34| 19|
+|  9| 33| 23|
+|  9| 33| 23|
+|  5| 10| 56|
+|  3|  8| 54|
++---+---+---+
+
+>>> spark.sql("SELECT sensorid, cluster, count(*) AS num_outliers, avg(c_s) AS spdcntr, avg(dist) AS avgdist FROM sd WHERE dist > 20 GROUP BY sensorid, cluster ORDER BY sensorid, cluster").show()
++--------+-------+------------+-----------------+------------------+            
+|sensorid|cluster|num_outliers|          spdcntr|           avgdist|
++--------+-------+------------+-----------------+------------------+
+|     145|      0|         263|55.19267601834352|21.773669603758094|
+|     145|      2|        1090| 17.2033944702982| 27.67223976561793|
+|     145|      3|           2|55.67820197960854|27.414905749230567|
++--------+-------+------------+-----------------+------------------+
+
+>>> spark.sql("SELECT cluster, doy, time, c_v,c_s,c_o, p_v,p_s,p_o FROM sd WHERE cluster=<insert-clust-id-here> and dist >20 ORDER BY dist").show()
+Traceback (most recent call last):
+  File "/share/apps/spark/spark-2.2.0-bin-hadoop2.6/python/pyspark/sql/utils.py", line 63, in deco
+    return f(*a, **kw)
+  File "/share/apps/spark/spark-2.2.0-bin-hadoop2.6/python/lib/py4j-0.10.4-src.zip/py4j/protocol.py", line 319, in get_return_value
+py4j.protocol.Py4JJavaError: An error occurred while calling o34.sql.
+: org.apache.spark.sql.catalyst.parser.ParseException: 
+mismatched input 'FROM' expecting {<EOF>, 'WHERE', 'GROUP', 'ORDER', 'HAVING', 'LIMIT', 'LATERAL', 'WINDOW', 'UNION', 'EXCEPT', 'MINUS', 'INTERSECT', 'SORT', 'CLUSTER', 'DISTRIBUTE'}(line 1, pos 52)
+
+== SQL ==
+SELECT cluster, doy, time, c_v,c_s,c_o, p_v,p_s,p_o FROM sd WHERE cluster=<insert-clust-id-here> and dist >20 ORDER BY dist
+----------------------------------------------------^^^
+
+	at org.apache.spark.sql.catalyst.parser.ParseException.withCommand(ParseDriver.scala:217)
+	at org.apache.spark.sql.catalyst.parser.AbstractSqlParser.parse(ParseDriver.scala:114)
+	at org.apache.spark.sql.execution.SparkSqlParser.parse(SparkSqlParser.scala:48)
+	at org.apache.spark.sql.catalyst.parser.AbstractSqlParser.parsePlan(ParseDriver.scala:68)
+	at org.apache.spark.sql.SparkSession.sql(SparkSession.scala:623)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+	at py4j.Gateway.invoke(Gateway.java:280)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.GatewayConnection.run(GatewayConnection.java:214)
+	at java.lang.Thread.run(Thread.java:745)
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/share/apps/spark/spark-2.2.0-bin-hadoop2.6/python/pyspark/sql/session.py", line 556, in sql
+    return DataFrame(self._jsparkSession.sql(sqlQuery), self._wrapped)
+  File "/share/apps/spark/spark-2.2.0-bin-hadoop2.6/python/lib/py4j-0.10.4-src.zip/py4j/java_gateway.py", line 1133, in __call__
+  File "/share/apps/spark/spark-2.2.0-bin-hadoop2.6/python/pyspark/sql/utils.py", line 73, in deco
+    raise ParseException(s.split(': ', 1)[1], stackTrace)
+pyspark.sql.utils.ParseException: "\nmismatched input 'FROM' expecting {<EOF>, 'WHERE', 'GROUP', 'ORDER', 'HAVING', 'LIMIT', 'LATERAL', 'WINDOW', 'UNION', 'EXCEPT', 'MINUS', 'INTERSECT', 'SORT', 'CLUSTER', 'DISTRIBUTE'}(line 1, pos 52)\n\n== SQL ==\nSELECT cluster, doy, time, c_v,c_s,c_o, p_v,p_s,p_o FROM sd WHERE cluster=<insert-clust-id-here> and dist >20 ORDER BY dist\n----------------------------------------------------^^^\n"
+>>> clusters = KMeans.train(vso, 5, maxIterations=10, initializationMode="random") rdd_w_clustsk5 = sdfilt.map(lambda x: addclustercols(x))
+  File "<stdin>", line 1
+    clusters = KMeans.train(vso, 5, maxIterations=10, initializationMode="random") rdd_w_clustsk5 = sdfilt.map(lambda x: addclustercols(x))
+                                                                                                ^
+SyntaxError: invalid syntax
+>>> schema_sd = spark.createDataFrame(rdd_w_clustsk5, ('highway','sensorloc', 'sensorid', 'doy', 'dow', 'time', 'p_v', 'p_s', 'p_o', 'cluster', 'c_v', 'c_s', 'c_o', 'dist'))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'rdd_w_clustsk5' is not defined
+>>> clusters = KMeans.train(vso, 5, maxIterations=10, initializationMode="random")
+>>> rdd_w_clustsk5 = sdfilt.map(lambda x: addclustercols(x))
+>>> schema_sd = spark.createDataFrame(rdd_w_clustsk5, ('highway','sensorloc', 'sensorid', 'doy', 'dow', 'time', 'p_v', 'p_s', 'p_o', 'cluster', 'c_v', 'c_s', 'c_o', 'dist'))
+>>> schema_sd.createOrReplaceTempView("sdk5")
+>>> spark.sql("SELECT cluster, c_v, c_s, c_o, count(*) AS num, max(dist) AS maxdist, avg(dist) AS avgdist,stddev_pop(dist) AS stdev FROM sdk5 GROUP BY cluster, c_v, c_s, c_o ORDER BY cluster").show()
++-------+------------------+------------------+------------------+-----+------------------+------------------+------------------+
+|cluster|               c_v|               c_s|               c_o|  num|           maxdist|           avgdist|             stdev|
++-------+------------------+------------------+------------------+-----+------------------+------------------+------------------+
+|      0|3.1704499391974057| 68.95551276854479|3.1621402513173895| 9881| 13.16703689018973| 5.480172382306175| 1.699103995523379|
+|      1| 6.521932339449542|16.517488532110093| 35.77551605504588| 6945| 66.63443079102888|11.905025862897826|  8.39060252866014|
+|      2| 6.690359920419606|59.618677277385906| 8.826972930608308|16930|14.536080234579973| 4.587096210600511| 1.949647625910241|
+|      3| 2.019787194325182|  50.0679484786261| 2.521000560014934| 5358|  23.5191942919043| 2.309977373180457|1.8600946145108406|
+|      4| 8.987656113854197|49.403282021492885|14.852599477200116| 6560|26.747554726400733| 6.653521060024131| 4.352963047291449|
++-------+------------------+------------------+------------------+-----+------------------+------------------+------------------+
+
+>>> rdd_w_clusts_wnullclustk5 = rdd_w_clustsk5.map(lambda x: inclust(x,20))
+>>> rdd_w_clusts_wnullclustk5.map(lambda y: (y[9],1)).reduceByKey(add).top(6)
+
+[(4, 6489), (3, 5356), (2, 16930), (1, 6132), (0, 9881), (-1, 886)]             
+>>> 
+>>> spark.sql("SELECT sensorid, cluster, count(*) AS num_outliers, avg(c_s) AS spdcntr, avg(dist) AS avgdist FROM sdk5 WHERE dist > 20 GROUP BY sensorid, cluster ORDER BY sensorid, cluster").show()
++--------+-------+------------+-----------------+------------------+            
+|sensorid|cluster|num_outliers|          spdcntr|           avgdist|
++--------+-------+------------+-----------------+------------------+
+|     145|      1|         813|16.51748853211022| 29.08018114745296|
+|     145|      3|           2| 50.0679484786261|22.172363446851218|
+|     145|      4|          71|49.40328202149292|21.139513888988063|
++--------+-------+------------+-----------------+------------------+
+
+>>> spark.sql("SELECT cluster, doy, time, c_v,c_s,c_o, p_v,p_s,p_o FROM sdk5 WHERE cluster=3 and dist >20 ORDER BY dist").show()
++-------+-------+------+-----------------+----------------+-----------------+---+---+---+
+|cluster|    doy|  time|              c_v|             c_s|              c_o|p_v|p_s|p_o|
++-------+-------+------+-----------------+----------------+-----------------+---+---+---+
+|      3|2014329| 564.0|2.019787194325182|50.0679484786261|2.521000560014934|  3| 30|  8|
+|      3|2014332|722.67|2.019787194325182|50.0679484786261|2.521000560014934|  3| 27|  7|
++-------+-------+------+-----------------+----------------+-----------------+---+---+---+
+
+>>> schema_sd = spark.createDataFrame(rdd_w_clusts_wnullclustk5, ('highway','sensorloc', 'sensorid', 'doy', 'dow', 'time','p_v','p_s','p_o', 'cluster', 'c_v','c_s','c_o','dist'))
+>>> schema_sd.createOrReplaceTempView("sdk5nc")
+>>> cdata=spark.sql("SELECT cluster, p_v, p_s, p_o FROM sdk5nc ORDER BY cluster")
+>>> cdata.repartition(1).write.csv("k5clusts.csv", sep='|')
